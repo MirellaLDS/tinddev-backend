@@ -9,6 +9,7 @@ routes.get('/', (req, res) => {
     return res.json({menssagem: `Oi ${req.query.name}`});
 });
 
+routes.get('/devs/all', DevController.findAll);
 routes.get('/devs', DevController.index);
 routes.post('/devs', DevController.store);
 

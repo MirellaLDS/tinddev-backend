@@ -1,7 +1,20 @@
 const axios = require("axios");
 const Dev = require("../models/Dev");
+const { find } = require("../models/Dev");
 
 module.exports = {
+  async findAll(req, res) {
+    var result = `{"error": "Mensagem de error"}`;
+    const loggedDev = await Dev.find({}, function(err, result) {      
+      if (err) {
+        console.log(err);
+      } else {
+        result = res.json(result);
+      }
+    });
+    return result;
+  },
+
   async index(req, res) {
     const { user } = req.headers;
 
