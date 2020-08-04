@@ -12,10 +12,10 @@ const swaggerOptions = {
         openapi: "3.0.0",
         info: {
           version: "1.0.0",
-          title: "Customer API",
-          description: "Customer API Information",
+          title: "TinDev",
+          description: "Clone do Tinder para desenvolvedores. \n Uma aplicação que permite que desenvolvedores encontrem parceiros de trabalho através de seus perfis do GitHub. \n Após fazer login o desenvolvedor pode dar 'like' e 'dislikes' em outros desenvolvedores, quando um dois desenvolvedores dão like um no outro temos um 'Match' e então os dois são avisados.",
           contact: {
-            name: "Amazing Developer"
+            name: "Mirella Lins"
           }
         },
         servers: [
@@ -120,6 +120,9 @@ routes.get('/devs', DevController.index);
 routes.post('/devs', DevController.store);
 routes.post('/devs/:devId/likes', LikeController.store);
 routes.post('/devs/:devId/dislikes', DislikeController.store);
+
+
+routes.get('/devs/profile', DevController.getByname);
 
 /**
  * @swagger

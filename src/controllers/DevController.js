@@ -32,6 +32,30 @@ module.exports = {
     return res.json(users);
   },
 
+  async getByname(req, res) {
+    const { username } = req.headers;
+
+    const userExists = await Dev.findOne({ user: username });
+  
+    if (userExists) {
+    const { name, bio, avatar_url: avatar } = userExists;
+
+    const dev = await Dev.create({
+      name,
+      user: username,
+      bio,
+      avatar
+    });    
+
+      return res.json(dev);
+
+    } else {
+
+      return res.status(400).send({mensagem:"Não existe no banco de dados" });
+
+    }
+  },
+
   async store(req, res) {
     const { username } = req.body;
 
