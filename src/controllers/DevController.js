@@ -38,21 +38,19 @@ module.exports = {
     const userExists = await Dev.findOne({ user: username });
   
     if (userExists) {
-    const { name, bio, avatar_url: avatar } = userExists;
+      const { name, bio, avatar_url: avatar } = userExists;
 
-    const dev = await Dev.create({
-      name,
-      user: username,
-      bio,
-      avatar
-    });    
+      const dev = await Dev.create({
+        name,
+        user: username,
+        bio,
+        avatar
+      });    
 
-      return res.json(dev);
+        return res.json(dev);
 
     } else {
-
       return res.status(400).send({mensagem:"Não existe no banco de dados" });
-
     }
   },
 
@@ -77,6 +75,10 @@ module.exports = {
       avatar
     });
 
-    return res.json(dev);
+    if (!name) {
+      return res.status(400).send({mensagem:"Nome de usuário é obrigatório! Seu perfil no github está incompleto." });
+    } else {
+      return res.json(dev);
+    }
   }
 };
